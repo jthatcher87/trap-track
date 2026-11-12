@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {seal,open} from '../app/vault.js';import {mergeRecords,validateRecords} from '../app/model.js';
+const pass='a long demonstration passphrase';
+test('encrypted journal round trips without plaintext and uses fresh randomness',async()=>{const r=[{id:'one',updated:'2026-11-11T12:00:00Z',title:'Sensitive reflection'}],a=await seal(r,pass),b=await seal(r,pass);assert.deepEqual(await open(a,pass),r);assert.notEqual(a.data,b.data);assert.ok(!JSON.stringify(a).includes('Sensitive'));});
+test('wrong passphrase and tampering cannot decrypt',async()=>{const a=await seal([],pass);await assert.rejects(open(a,'incorrect passphrase'));a.data='A'+a.data.slice(1);await assert.rejects(open(a,pass));});
+test('newer deletion survives merging an older device copy',()=>{const r={id:'one',updated:'2026-11-10T12:00:00Z',title:'Old'},d={id:'one',updated:'2026-11-11T12:00:00Z',deleted:true};assert.deepEqual(mergeRecords([d],[r]),[d]);assert.deepEqual(mergeRecords([r],[d]),[d]);});
+test('invalid imported or remote data is rejected before merging',()=>{assert.throws(()=>validateRecords([{id:'bad" onclick="',updated:'no'}]));assert.throws(()=>validateRecords([{id:'valid',updated:'2026-11-11',temps:[{}]}]));assert.throws(()=>mergeRecords([],{}));});

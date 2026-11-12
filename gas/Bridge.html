@@ -1,0 +1,12 @@
+<!doctype html><html><head><base target="_top"></head><body><script>
+const allowedOrigin=<?!= JSON.stringify(origin) ?>;
+const nonce=<?!= JSON.stringify(nonce) ?>;
+window.addEventListener('message',function(e){
+ if(e.origin!==allowedOrigin || e.source!==window.top || e.data?.kind!=='trap-request')return;
+ const request=e.data;
+ google.script.run.withSuccessHandler(function(result){window.top.postMessage({id:request.id,result:result},allowedOrigin);})
+ .withFailureHandler(function(error){window.top.postMessage({id:request.id,error:error.message||'Google Sheets request failed.'},allowedOrigin);})
+ .journalApi({token:request.token,action:request.action,payload:request.payload});
+});
+window.top.postMessage({kind:'trap-ready',nonce:nonce},allowedOrigin);
+</script></body></html>
