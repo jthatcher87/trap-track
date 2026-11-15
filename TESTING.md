@@ -4,7 +4,7 @@
 - `npm test`: 13 checks pass, including original regression checks plus hosted per-user isolation, repeat-safe setup, authorization identity rejection, encrypted snapshot round-trip, stale revisions, plaintext rejection and bridge origin/source/nonce/request binding.
 - Hosted source requires a separate Apps Script deployment; owner authorization, live read/write, second-device read-back and a second real account are acceptance checks, not established by simulation.
 
-Hosted Apps Script project created and Code.gs/Hosted.html installed. Applying the manifest permissions and signed-in-user audience was blocked by automatic approval review pending explicit approval of spreadsheet and email scopes and Google-account access. No live 2.0 endpoint, owner authorization, real multi-account isolation or hosted sync is claimed. Version 1.0 backend is unchanged.
+Hosted service deployment succeeded on 2026-11-15 using User accessing the web app / Anyone with Google account. The deployed endpoint opens Google's permission authorization screen. Owner account verification is pending before live setup and read/write can be tested. All 13 automated checks pass. No live multi-account isolation or hosted encrypted write/read-back is claimed yet. The original 1.0 backend remains intact.
 
 Previous implementation verification follows for historical context.
 
