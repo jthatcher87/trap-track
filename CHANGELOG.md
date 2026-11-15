@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0
+## 2.0.0 · reviewed and approved · 2026-11-15
 
 - Preserved the exact pre-change source in backup/v1.0.
 - Added a separately deployed Google-user-authorized hosted journal workspace.
@@ -8,6 +8,8 @@
 - Added nonce/source/origin-bound encrypted transport and token-free client setup.
 - Preserved the original backend, encryption format, local storage and manual connection.
 - Added migration guidance and isolation/transport tests.
+- Josh Thatcher reviewed and approved the release and its explicit Google permission/audience settings.
+- Hosted service deployed; source promoted to main; Google verification is pending for live sync acceptance.
 - Live deployment status is documented in TESTING.md.
 
 
