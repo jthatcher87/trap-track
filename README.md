@@ -30,6 +30,9 @@ Local development: serve `app/` through a static server on localhost. `npm run c
 
 ## Google Sheets + Apps Script setup (one person per deployment)
 
+**Clients: follow the [complete step-by-step setup guide](https://jthatcher87.github.io/trap-track/setup.html)**, also linked in app Settings. It includes the exact code files, permission review, private Sheet creation, deployment, connection, a second-device test, troubleshooting, backups, and updates.
+
+
 1. Create a new standalone project at https://script.google.com/ under the journal owner's account.
 2. Replace its code with `gas/Code.gs`. Add an HTML file named **Bridge** using `gas/Bridge.html`. In Project Settings, enable manifest editing and use `gas/appsscript.json`.
 3. Run `setup()` once and authorize the spreadsheet scope. This creates a private spreadsheet named **Trap Track · Private encrypted journal**. It also generates a private access token in Script Properties. Running setup again reuses the existing Sheet and token.
