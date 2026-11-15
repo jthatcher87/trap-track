@@ -1,10 +1,12 @@
-# Trap Track · PNiXStudio
+# Trap Track 2.0 · PNiXStudio
 
 A standalone, installable web journal that teaches TRAP → TRAC, helps someone reflect on an event, and turns that reflection into a next-time plan. No build step or runtime framework. GitHub Pages serves `app/`; each individual owns their own private Google Sheet and Apps Script deployment.
 
-## Current delivery status
+## Version 2.0
 
-Implementation and local verification are complete as recorded in TESTING.md. GitHub repository creation/Pages activation and live Google Apps Script authorization/deployment require the account owner's sign-in. No live hosted URL or end-to-end cloud verification is claimed.
+Version 1.0 is preserved at [`backup/v1.0`](https://github.com/jthatcher87/trap-track/tree/backup/v1.0), commit `53307f01be5153da5013883b0d04d31ae282120c`. This source backup contains no private journal content or account credentials.
+
+The 2.0 hosted Google workspace creates a private Sheet for the signed-in client and handles encrypted sync without client deployments or copied tokens. See [hosted service installation](gas-hosted/README.md) and [release record](RELEASES.md). The existing individual deployment flow remains available. The Google workspace is online; the standalone PWA retains offline journaling. Deployment and live acceptance status are in TESTING.md.
 
 ## Features
 

@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><base target="_top"><meta charset="utf-8"><style>html,body{margin:0;height:100%;background:#020617;color:#dbe4f2;font:16px system-ui}iframe{width:100%;height:100%;border:0;display:block}#fallback{padding:20px}a{color:#22d3ee}</style></head><body><div id="fallback" role="status">Opening your journal… If the app does not load, allow embedded site content for this Google workspace or use the standalone journal and its encrypted backups.</div><iframe id="journal" title="Trap Track private journal" allow="clipboard-write"></iframe><script>
+const appUrl=<?!= JSON.stringify(appUrl) ?>, appOrigin=new URL(appUrl).origin;
+const frame=document.getElementById('journal'),nonce=crypto.randomUUID();
+window.addEventListener('message',e=>{
+ const d=e.data;
+ if(e.origin!==appOrigin||e.source!==frame.contentWindow||!d||d.nonce!==nonce)return;
+ if(d.kind==='trap-hosted-hello'){
+  document.getElementById('fallback').hidden=true;
+  frame.contentWindow.postMessage({kind:'trap-hosted-ready',nonce},appOrigin);return;
+ }
+ if(d.kind!=='trap-hosted-request'||typeof d.id!=='string'||!['status','setup','read','write'].includes(d.action))return;
+ google.script.run.withSuccessHandler(result=>frame.contentWindow.postMessage({kind:'trap-hosted-result',nonce,id:d.id,result},appOrigin))
+ .withFailureHandler(()=>frame.contentWindow.postMessage({kind:'trap-hosted-result',nonce,id:d.id,error:'Google journal request failed. Check your account permissions, connection, and deployment. Your local data has not been removed.'},appOrigin))
+ .hostedApi({action:d.action,payload:d.payload});
+});
+frame.addEventListener('load',()=>frame.contentWindow.postMessage({kind:'trap-hosted-ready',nonce},appOrigin));
+frame.src=appUrl+'?hosted=1&nonce='+encodeURIComponent(nonce)+'#settings';
+</script></body></html>

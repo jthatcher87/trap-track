@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.0
+
+- Preserved the exact pre-change source in backup/v1.0.
+- Added a separately deployed Google-user-authorized hosted journal workspace.
+- Added repeat-safe private Sheet setup using per-user properties and locks.
+- Added nonce/source/origin-bound encrypted transport and token-free client setup.
+- Preserved the original backend, encryption format, local storage and manual connection.
+- Added migration guidance and isolation/transport tests.
+- Live deployment status is documented in TESTING.md.
+
+
 ## 0.1.0 · implementation prepared · 2026-11-11
 
 - Added TRAP → TRAC lessons with sources and a distinction from standard DBT terminology.

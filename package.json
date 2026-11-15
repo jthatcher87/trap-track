@@ -1,1 +1,10 @@
-{"name":"trap-track","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.js","check":"node --check app/app.js && node --check app/sw.js && node --check app/vault.js"}}
+{
+  "name": "trap-track",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check app/app.js && node --check app/sw.js && node --check app/vault.js && node --check app/hosted.js && node --check app/hosted-config.js"
+  },
+  "version": "2.0.0"
+}
